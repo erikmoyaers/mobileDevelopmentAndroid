@@ -18,9 +18,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private int count=0;
-//    @BindView(R.id.myButton) Button button;
-//    @BindView(R.id.myTextView) TextView textview;
+
     @BindView(R.id.usernameInput) EditText usernameInput;
 
 
@@ -32,20 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String defaultValue = "";
-        String username = sharedPref.getString(("username"), defaultValue);
+        String username = sharedPref.getString(getString(R.string.username), defaultValue);
 
-        usernameInput.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    saveUsername();
-                    return true;
-                }
-                return false;
+        usernameInput.setOnKeyListener((v, keyCode, event) -> {
+            // If the event is a key-down event on the "enter" button
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                // Perform action on key press
+                saveUsername();
+                return true;
             }
+            return false;
         });
 
         if(username!=""){
@@ -68,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username",username);
+        editor.putString(getString(R.string.username),username);
         editor.commit();
 
     }
