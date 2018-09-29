@@ -1,47 +1,33 @@
 package com.example.brent.myapplication;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener {
 
 
-    @BindView(R.id.usernameInput) EditText usernameInput;
-
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String defaultValue = "";
         String username = sharedPref.getString(getString(R.string.username), defaultValue);
 
-        usernameInput.setOnKeyListener((v, keyCode, event) -> {
-            // If the event is a key-down event on the "enter" button
-            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                // Perform action on key press
-                saveUsername();
-                return true;
-            }
-            return false;
-        });
 
         if(username!=""){
             //TODO open new Activity or Fragment
@@ -49,22 +35,18 @@ public class MainActivity extends AppCompatActivity {
                     username,
                     Toast.LENGTH_SHORT).show();
 
+        }else{
+
+            LoginFragment loginFragment = new LoginFragment();
+            fragmentTransaction.add(R.id.mainActivity, loginFragment);
+            fragmentTransaction.addToBackStack("loginFragment");
+            fragmentTransaction.commit();
         }
 
     }
 
-
-    public void saveUsername(){
-        String username = usernameInput.getText().toString();
-        Toast toast = Toast.makeText(getApplicationContext(),
-                username,
-                Toast.LENGTH_SHORT);
-
-        toast.show();
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.username),username);
-        editor.commit();
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
