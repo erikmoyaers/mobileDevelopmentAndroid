@@ -6,4 +6,7 @@
     <string name="label_total_wins">Wins</string>
     <string name="label_total_kills">Kills</string>
     <string name="label_win_percentage">Win%</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
