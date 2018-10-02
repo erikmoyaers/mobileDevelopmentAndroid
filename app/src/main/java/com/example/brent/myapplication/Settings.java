@@ -146,7 +146,7 @@ public class Settings extends Fragment {
 
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.username),username);
-                editor.commit();
+                editor.apply();
 
                 Toast.makeText(this.getActivity().getApplicationContext(),
                         "username saved...",
