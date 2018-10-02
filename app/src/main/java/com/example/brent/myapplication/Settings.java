@@ -1,12 +1,20 @@
 package com.example.brent.myapplication;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -18,6 +26,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Settings extends Fragment {
+    @BindView(R.id.editTextChangeUsernameSettings)
+    EditText usernameInput;
+    private SharedPreferences sharedPref;
+
+    private Unbinder unbinder;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,7 +77,18 @@ public class Settings extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        unbinder = ButterKnife.bind(this, view);
+
+        sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        String defaultValue = "";
+        String username = sharedPref.getString(getString(R.string.username), defaultValue);
+        usernameInput.setText(username);
+
+        saveUsername(usernameInput);
+
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +115,12 @@ public class Settings extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -104,5 +134,29 @@ public class Settings extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void saveUsername(EditText usernameInput){
+        usernameInput.setOnKeyListener((v, keyCode, event) -> {
+            // If the event is a key-down event on the "enter" button
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                // Perform action on key press
+                String username = usernameInput.getText().toString();
+
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.username),username);
+                editor.commit();
+                getFragmentManager().popBackStack();
+                Toast.makeText(this.getActivity().getApplicationContext(),
+                        "username saved...",
+                        Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        });
+
+
+
     }
 }

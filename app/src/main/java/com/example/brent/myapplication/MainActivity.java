@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener,UserStatistics.OnFragmentInteractionListener {
 
 
     FragmentManager fragmentManager;
@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
 
         if(username!=defaultValue){
             //TODO open new Activity or Fragment
-            Toast.makeText(getApplicationContext(),
-                    username,
-                    Toast.LENGTH_SHORT).show();
+            UserStatistics statsFragment = new UserStatistics();
+            fragmentTransaction.add(R.id.mainActivity, statsFragment);
+            fragmentTransaction.addToBackStack("statsFragment");
+            fragmentTransaction.commit();
 
         }else{
 
