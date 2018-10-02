@@ -28,7 +28,7 @@ import butterknife.Unbinder;
 public class LoginFragment extends Fragment {
 
     @BindView(R.id.usernameInput)
-    private EditText usernameInput;
+     EditText usernameInput;
     private Unbinder unbinder;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
