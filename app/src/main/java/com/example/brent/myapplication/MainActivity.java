@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         String username = sharedPref.getString(getString(R.string.username), defaultValue);
 
 
-        if(username!=""){
+        if(username!=defaultValue){
             //TODO open new Activity or Fragment
             Toast.makeText(getApplicationContext(),
                     username,
