@@ -7,6 +7,9 @@
     <string name="label_total_kills">Kills</string>
     <string name="label_win_percentage">Win%</string>
     <string name="label_edit_username">Change username:</string>
+    <string name="settings">Settings</string>
+    <string name="stats">User Stats</string>
+    <string name="challenges">Weekly challenges</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
