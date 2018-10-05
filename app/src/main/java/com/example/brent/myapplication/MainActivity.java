@@ -15,13 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener,UserStatistics.OnFragmentInteractionListener,Settings.OnFragmentInteractionListener,Challenges.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements Challenges.OnFragmentInteractionListener {
 
 
     FragmentManager fragmentManager;
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -46,26 +46,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        String defaultValue = "";
-        String username = sharedPref.getString(getString(R.string.username), defaultValue);
-
-
-        if(username!=defaultValue){
-            //TODO open new Activity or Fragment
-            UserStatistics statsFragment = new UserStatistics();
-            fragmentTransaction.add(R.id.mainActivity, statsFragment);
-            fragmentTransaction.addToBackStack("statsFragment");
-            fragmentTransaction.commit();
-
-        }else{
-
-            LoginFragment loginFragment = new LoginFragment();
-            fragmentTransaction.add(R.id.mainActivity, loginFragment);
-            fragmentTransaction.addToBackStack("loginFragment");
-            fragmentTransaction.commit();
-        }
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
                     // set item as selected to persist highlight
@@ -78,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
                     String menuTitle = menuItem.getTitle().toString();
                     for (Fragment fragment:getSupportFragmentManager().getFragments()) {
 
-                         if (fragment!=null) {
+                        if (fragment!=null) {
                             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                         }
                     }
@@ -86,26 +66,49 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
                     if (getResources().getString(R.string.stats).equals(menuTitle)) {
 
                         UserStatistics statsFragment = new UserStatistics();
-
                         fragmentTransaction.add(R.id.mainActivity, statsFragment);
-                        fragmentTransaction.addToBackStack("statsFragment");
                         fragmentTransaction.commit();
 
                     }else if(getResources().getString(R.string.challenges).equals(menuTitle)){
 
                         Challenges challengesFragment = new Challenges();
                         fragmentTransaction.add(R.id.mainActivity, challengesFragment);
-                        fragmentTransaction.addToBackStack("challengesFragment");
                         fragmentTransaction.commit();
 
                     }else if(getResources().getString(R.string.settings).equals(menuTitle)){
                         Settings settingsFragment = new Settings();
                         fragmentTransaction.add(R.id.mainActivity, settingsFragment);
-                        fragmentTransaction.addToBackStack("settingsFragment");
                         fragmentTransaction.commit();
                     }
                     return true;
                 });
+
+
+        if (savedInstanceState != null) {
+            return;
+        }
+
+
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        String defaultValue = "";
+        String username = sharedPref.getString(getString(R.string.username), defaultValue);
+
+
+        if(username!=defaultValue){
+            //TODO open new Activity or Fragment
+            UserStatistics statsFragment = new UserStatistics();
+            navigationView.getMenu().getItem(0).setChecked(true);
+            fragmentTransaction.add(R.id.mainActivity, statsFragment);
+            fragmentTransaction.commit();
+
+        }else{
+
+            LoginFragment loginFragment = new LoginFragment();
+            fragmentTransaction.add(R.id.mainActivity, loginFragment);
+            fragmentTransaction.commit();
+        }
+
 
 
     }
