@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -24,9 +27,19 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.usernameInput)
      EditText usernameInput;
     private Unbinder unbinder;
+    private NavigationView navigationView;
+
+
 
     public LoginFragment() {
-        // Required empty public constructor
+
+    }
+
+
+    public static LoginFragment newInstance(NavigationView navigationView){
+        LoginFragment fragment = new LoginFragment();
+        fragment.setNavigationView(navigationView);
+        return fragment;
     }
 
     @Override
@@ -68,9 +81,21 @@ private void saveUsername(EditText usernameInput){
             Toast.makeText(this.getActivity().getApplicationContext(),
                     "username saved...",
                     Toast.LENGTH_SHORT).show();
+            Menu menuNav = navigationView.getMenu();
+            for(int i = 0; i< menuNav.size();i++){
+                menuNav.getItem(i).setEnabled(true);
+            }
             return true;
         }
         return false;
     });
 }
+
+    public NavigationView getNavigationView() {
+        return navigationView;
+    }
+
+    public void setNavigationView(NavigationView navigationView) {
+        this.navigationView = navigationView;
+    }
 }

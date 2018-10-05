@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.BindView;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(username!=defaultValue){
+
             //TODO open new Activity or Fragment
             UserStatistics statsFragment = new UserStatistics();
             navigationView.getMenu().getItem(0).setChecked(true);
@@ -103,10 +105,13 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
 
         }else{
-
-            LoginFragment loginFragment = new LoginFragment();
+            LoginFragment loginFragment = LoginFragment.newInstance(navigationView);
             fragmentTransaction.add(R.id.mainActivity, loginFragment);
             fragmentTransaction.commit();
+            Menu menuNav = navigationView.getMenu();
+            for(int i = 0; i< menuNav.size();i++){
+                menuNav.getItem(i).setEnabled(false);
+            }
         }
 
 
