@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements Challenges.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
 
     FragmentManager fragmentManager;
@@ -123,8 +123,4 @@ public class MainActivity extends AppCompatActivity implements Challenges.OnFrag
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
