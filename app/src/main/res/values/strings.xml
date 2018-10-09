@@ -12,9 +12,9 @@
     <string name="stats">User Stats</string>
     <string name="challenges">Weekly challenges</string>
     <string-array name="platforms_array">
-        <item name="pc">PC</item>
-        <item name="psn">PS4</item>
-        <item name="xbl">XBOX</item>
+        <item name="pc">pc</item>
+        <item name="psn">psn</item>
+        <item name="xbl">xbl</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

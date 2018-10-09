@@ -2,6 +2,6 @@ package be.pxl.student.fortniteApp;
 
 import java.util.HashMap;
 
-public interface VolleyCallback {
+public interface ILifetimeStatsCallback {
     void onSuccesResponse(HashMap<String,String> result);
 }
