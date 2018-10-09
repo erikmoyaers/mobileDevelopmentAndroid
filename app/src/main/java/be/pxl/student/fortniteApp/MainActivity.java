@@ -15,16 +15,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import be.pxl.student.fortniteApp.R;
-
+import com.android.volley.RequestQueue;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity {
 
-
+    RequestQueue requestQueue;
+    static String challengesUrl = "https://api.fortnitetracker.com/v1/challenges";
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     @BindView(R.id.drawer_layout)
@@ -39,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //test
+
+        requestQueue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        //MySingleton.getInstance(this.getApplicationContext()).getChallenges().forEach(System.out::println);
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
