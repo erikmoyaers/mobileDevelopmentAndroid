@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    tools:context=".Challenges">
+    tools:context="be.pxl.student.fortniteApp.Challenges">
 
     <!-- TODO: Update blank fragment layout -->
 

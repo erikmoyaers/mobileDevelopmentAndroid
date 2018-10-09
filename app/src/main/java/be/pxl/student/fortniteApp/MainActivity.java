@@ -1,9 +1,8 @@
-package com.example.brent.myapplication;
+package be.pxl.student.fortniteApp;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +15,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import be.pxl.student.fortniteApp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

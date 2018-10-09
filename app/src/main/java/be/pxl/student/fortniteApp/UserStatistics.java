@@ -1,4 +1,4 @@
-package com.example.brent.myapplication;
+package be.pxl.student.fortniteApp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,11 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import be.pxl.student.fortniteApp.R;
 
 
-public class Challenges extends Fragment {
+public class UserStatistics extends Fragment {
 
-    public Challenges() {
+    public UserStatistics() {
         // Required empty public constructor
     }
 
@@ -18,7 +19,7 @@ public class Challenges extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_challenges, container, false);
+        return inflater.inflate(R.layout.fragment_user_statistics, container, false);
     }
 
 }

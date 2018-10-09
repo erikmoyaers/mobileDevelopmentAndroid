@@ -1,4 +1,4 @@
-package com.example.brent.myapplication;
+package be.pxl.student.fortniteApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import be.pxl.student.fortniteApp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

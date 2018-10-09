@@ -1,8 +1,7 @@
-package com.example.brent.myapplication;
+package be.pxl.student.fortniteApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,11 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import be.pxl.student.fortniteApp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
