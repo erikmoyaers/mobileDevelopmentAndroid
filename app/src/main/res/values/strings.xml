@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fortnite Companion App</string>
     <string name="username">Username</string>
+    <string name="platform">Platform</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_total_wins">Wins</string>
@@ -10,6 +11,11 @@
     <string name="settings">Settings</string>
     <string name="stats">User Stats</string>
     <string name="challenges">Weekly challenges</string>
+    <string-array name="platforms_array">
+        <item name="pc">PC</item>
+        <item name="psn">PS4</item>
+        <item name="xbl">XBOX</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

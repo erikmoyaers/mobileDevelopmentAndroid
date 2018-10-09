@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import be.pxl.student.fortniteApp.R;
@@ -26,6 +28,8 @@ public class LoginFragment extends Fragment {
 
     @BindView(R.id.usernameInput)
      EditText usernameInput;
+    @BindView(R.id.platform_spinner)
+    Spinner spinner;
     private Unbinder unbinder;
     private NavigationView navigationView;
 
@@ -50,6 +54,7 @@ public class LoginFragment extends Fragment {
        unbinder = ButterKnife.bind(this, view);
 
         saveUsername(usernameInput);
+        savePlatform(spinner);
 
         return view;
     }
@@ -58,6 +63,29 @@ public class LoginFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    private void savePlatform(Spinner spinner){
+        String platform = spinner.getSelectedItem().toString();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity().getApplicationContext(),
+                        spinner.getSelectedItem().toString(),
+                        Toast.LENGTH_SHORT).show();
+
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(String.valueOf(R.string.platform),spinner.getSelectedItem().toString());
+                editor.apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
 private void saveUsername(EditText usernameInput){
