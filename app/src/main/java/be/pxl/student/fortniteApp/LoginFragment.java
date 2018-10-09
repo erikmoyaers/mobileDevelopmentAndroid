@@ -76,7 +76,7 @@ public class LoginFragment extends Fragment {
 
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(String.valueOf(R.string.platform),spinner.getSelectedItem().toString());
+                editor.putString(getString(R.string.platform),spinner.getSelectedItem().toString());
                 editor.apply();
             }
 
