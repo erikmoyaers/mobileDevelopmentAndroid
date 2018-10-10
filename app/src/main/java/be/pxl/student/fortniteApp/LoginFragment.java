@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import be.pxl.student.fortniteApp.R;
@@ -99,6 +100,10 @@ private void saveUsername(EditText usernameInput){
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(getString(R.string.username),username);
             editor.apply();
+            //Set username as header title in nav
+//            View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
+            TextView headerUsername = getActivity().findViewById(R.id.navText);
+            headerUsername.setText(username);
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
             UserStatistics statsFragment = new UserStatistics();
