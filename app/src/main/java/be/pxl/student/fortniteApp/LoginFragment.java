@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import be.pxl.student.fortniteApp.R;
@@ -70,6 +71,9 @@ public class LoginFragment extends Fragment{
     public void save() {
         savePlatform(spinner);
         saveUsername(usernameInput);
+        TextView headerUsername = getActivity().findViewById(R.id.navText);
+        headerUsername.setText(usernameInput.getText());
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(usernameInput.getWindowToken(), 0);
     }
@@ -132,6 +136,8 @@ private void saveUsername(EditText usernameInput){
 //        }
 //        return false;
 //    });
+
+
 }
 
     public NavigationView getNavigationView() {

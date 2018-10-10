@@ -3,6 +3,7 @@ package be.pxl.student.fortniteApp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -100,6 +102,11 @@ public class Settings extends Fragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.username),username);
                 editor.apply();
+                //Set username as header title in nav
+//                NavigationView navigationView = getActivity().findViewById(R.id.navText);
+//                View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
+                TextView headerUsername = getActivity().findViewById(R.id.navText);
+                headerUsername.setText(username);
 
                 Toast.makeText(this.getActivity().getApplicationContext(),
                         "username saved...",

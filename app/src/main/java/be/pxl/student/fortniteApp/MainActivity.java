@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import com.android.volley.RequestQueue;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,8 +100,11 @@ public class MainActivity extends AppCompatActivity {
         String username = sharedPref.getString(getString(R.string.username), defaultValue);
 
 
-        if(username!=defaultValue){
-
+        if(!username.equals(defaultValue)){
+            //Add username to nav header on startup only //TODO ask why this code doesn't work as expected
+//            View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
+//            TextView headerUsername = hView.findViewById(R.id.navText);
+//            headerUsername.setText(username);
             //TODO open new Activity or Fragment
             UserStatistics statsFragment = new UserStatistics();
             navigationView.getMenu().getItem(0).setChecked(true);
