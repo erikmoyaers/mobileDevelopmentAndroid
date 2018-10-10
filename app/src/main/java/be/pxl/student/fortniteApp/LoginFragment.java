@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,16 +22,18 @@ import be.pxl.student.fortniteApp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment{
 
     @BindView(R.id.usernameInput)
      EditText usernameInput;
     @BindView(R.id.platform_spinner)
     Spinner spinner;
+
     private Unbinder unbinder;
     private NavigationView navigationView;
 
@@ -51,10 +55,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-       unbinder = ButterKnife.bind(this, view);
-
-        saveUsername(usernameInput);
-        savePlatform(spinner);
+        unbinder = ButterKnife.bind(this, view);
 
         return view;
     }
@@ -65,8 +66,18 @@ public class LoginFragment extends Fragment {
         unbinder.unbind();
     }
 
+    @OnClick(R.id.saveButton)
+    public void save() {
+        savePlatform(spinner);
+        saveUsername(usernameInput);
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(usernameInput.getWindowToken(), 0);
+    }
+
+
+
     private void savePlatform(Spinner spinner){
-        String platform = spinner.getSelectedItem().toString();
+        //String platform = spinner.getSelectedItem().toString();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -89,34 +100,38 @@ public class LoginFragment extends Fragment {
     }
 
 private void saveUsername(EditText usernameInput){
-    usernameInput.setOnKeyListener((v, keyCode, event) -> {
-        // If the event is a key-down event on the "enter" button
-        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                (keyCode == KeyEvent.KEYCODE_ENTER)) {
-            // Perform action on key press
-            String username = usernameInput.getText().toString();
-            SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(getString(R.string.username),username);
-            editor.apply();
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-            UserStatistics statsFragment = new UserStatistics();
-            fragmentTransaction.remove(this);
-            fragmentTransaction.add(R.id.mainActivity, statsFragment);
-            fragmentTransaction.commit();
+    String username = usernameInput.getText().toString();
+    SharedPreferences sharedPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPref.edit();
+    editor.putString(getString(R.string.username),username);
+    editor.apply();
+    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-            Toast.makeText(this.getActivity().getApplicationContext(),
-                    "username saved...",
-                    Toast.LENGTH_SHORT).show();
-            Menu menuNav = navigationView.getMenu();
-            for(int i = 0; i< menuNav.size();i++){
-                menuNav.getItem(i).setEnabled(true);
-            }
-            return true;
-        }
-        return false;
-    });
+    UserStatistics statsFragment = new UserStatistics();
+    fragmentTransaction.remove(this);
+    fragmentTransaction.add(R.id.mainActivity, statsFragment);
+    fragmentTransaction.commit();
+
+    Toast.makeText(this.getActivity().getApplicationContext(),
+            "username saved...",
+            Toast.LENGTH_SHORT).show();
+    Menu menuNav = navigationView.getMenu();
+    for(int i = 0; i< menuNav.size();i++){
+        menuNav.getItem(i).setEnabled(true);
+    }
+
+
+//    usernameInput.setOnKeyListener((v, keyCode, event) -> {
+//        // If the event is a key-down event on the "enter" button
+//        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+//                (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//            // Perform action on key press
+//
+//            return true;
+//        }
+//        return false;
+//    });
 }
 
     public NavigationView getNavigationView() {
@@ -126,4 +141,5 @@ private void saveUsername(EditText usernameInput){
     public void setNavigationView(NavigationView navigationView) {
         this.navigationView = navigationView;
     }
+
 }

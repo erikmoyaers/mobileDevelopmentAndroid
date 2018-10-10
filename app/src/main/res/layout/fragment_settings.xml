@@ -37,4 +37,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/platform_spinner_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:entries="@array/platforms_array"
+        app:layout_constraintEnd_toEndOf="@+id/editTextChangeUsernameSettings"
+        app:layout_constraintStart_toStartOf="@+id/editTextChangeUsernameSettings"
+        app:layout_constraintTop_toBottomOf="@+id/editTextChangeUsernameSettings" />
+
 </android.support.constraint.ConstraintLayout>
