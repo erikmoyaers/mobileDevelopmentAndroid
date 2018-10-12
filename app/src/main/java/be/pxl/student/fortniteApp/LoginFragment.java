@@ -82,24 +82,10 @@ public class LoginFragment extends Fragment{
 
     private void savePlatform(Spinner spinner){
         //String platform = spinner.getSelectedItem().toString();
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        spinner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
-
-                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(getString(R.string.platform),spinner.getSelectedItem().toString());
-                editor.apply();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.platform),spinner.getSelectedItem().toString());
+        editor.apply();
 
     }
 
