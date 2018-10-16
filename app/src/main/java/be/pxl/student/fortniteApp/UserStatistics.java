@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -62,7 +65,10 @@ public class UserStatistics extends Fragment {
             }
         });
 
-
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setInterpolator(new AccelerateInterpolator());
+        fadeIn.setDuration(2200);
+        view.setAnimation(fadeIn);
         return view;
     }
 
