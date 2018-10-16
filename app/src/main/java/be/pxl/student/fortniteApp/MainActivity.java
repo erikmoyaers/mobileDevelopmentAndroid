@@ -106,11 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(!username.equals(defaultValue)){
-            //Add username to nav header on startup only //TODO ask why this code doesn't work as expected
-//            View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
-//            TextView headerUsername = hView.findViewById(R.id.navText);
-//            headerUsername.setText(username);
-            //TODO open new Activity or Fragment
+            TextView headerUsername = navigationView.getHeaderView(0).findViewById(R.id.navText);
+            headerUsername.setText(username);
             UserStatistics statsFragment = new UserStatistics();
             navigationView.getMenu().getItem(1).setChecked(true);
             fragmentTransaction.add(R.id.mainActivity, statsFragment);

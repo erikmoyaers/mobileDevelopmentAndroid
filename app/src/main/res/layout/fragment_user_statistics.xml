@@ -16,14 +16,17 @@
         android:layout_marginTop="8dp"
         android:text="@string/label_total_wins"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toEndOf="@+id/matchesPlayedValue"
+        app:layout_constraintEnd_toStartOf="@+id/winPercentage"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/matchesPlayedValue" />
 
     <TextView
         android:id="@+id/totalWinsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="@+id/textViewWins"
         app:layout_constraintStart_toStartOf="@+id/textViewWins"
@@ -33,20 +36,24 @@
         android:id="@+id/textViewKills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/label_total_kills"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/winPercentage"
+        app:layout_constraintTop_toBottomOf="@+id/totalKDValue" />
 
     <TextView
         android:id="@+id/totalKillsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="@+id/textViewKills"
+        app:layout_constraintStart_toEndOf="@+id/winPercentageValue"
         app:layout_constraintStart_toStartOf="@+id/textViewKills"
         app:layout_constraintTop_toBottomOf="@+id/textViewKills" />
 
@@ -56,23 +63,89 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/label_win_percentage"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toEndOf="@+id/totalScoreValue"
         app:layout_constraintEnd_toStartOf="@+id/textViewKills"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewWins"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/totalScoreValue" />
 
     <TextView
         android:id="@+id/winPercentageValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="0%"
+        app:layout_constraintEnd_toEndOf="@+id/winPercentage"
+        app:layout_constraintStart_toStartOf="@+id/winPercentage"
+        app:layout_constraintTop_toBottomOf="@+id/winPercentage" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="0%"
-        app:layout_constraintEnd_toStartOf="@+id/totalKillsValue"
-        app:layout_constraintStart_toEndOf="@+id/totalWinsValue"
-        app:layout_constraintTop_toBottomOf="@+id/winPercentage" />
+        android:text="@string/label_score"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toStartOf="@+id/textViewKd"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toEndOf="@+id/matchesPlayed"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintEnd_toEndOf="@+id/textViewScore"
+        app:layout_constraintStart_toStartOf="@+id/textViewScore"
+        app:layout_constraintTop_toBottomOf="@+id/textViewScore" />
+
+    <TextView
+        android:id="@+id/textViewKd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/label_kill_death_ratio"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalKDValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/textViewKd"
+        app:layout_constraintStart_toStartOf="@+id/textViewKd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewKd" />
+
+    <TextView
+        android:id="@+id/matchesPlayedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="@+id/matchesPlayed"
+        app:layout_constraintStart_toStartOf="@+id/matchesPlayed"
+        app:layout_constraintTop_toBottomOf="@+id/matchesPlayed" />
+
+    <TextView
+        android:id="@+id/matchesPlayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/label_matches_played"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

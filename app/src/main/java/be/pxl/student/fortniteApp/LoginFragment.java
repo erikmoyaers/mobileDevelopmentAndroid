@@ -1,5 +1,7 @@
 package be.pxl.student.fortniteApp;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,10 +13,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +42,8 @@ public class LoginFragment extends Fragment{
      EditText usernameInput;
     @BindView(R.id.platform_spinner)
     Spinner spinner;
+    @BindView(R.id.imageView)
+    ImageView backgroundImage;
 
     private Unbinder unbinder;
     private NavigationView navigationView;
@@ -57,6 +67,11 @@ public class LoginFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setInterpolator(new AccelerateInterpolator());
+        fadeIn.setDuration(1000);
+        view.setAnimation(fadeIn);
 
         return view;
     }

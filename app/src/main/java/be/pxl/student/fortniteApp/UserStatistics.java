@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -35,6 +38,12 @@ public class UserStatistics extends Fragment {
     TextView winPercentage;
     @BindView(R.id.totalKillsValue)
     TextView totalKills;
+    @BindView(R.id.totalScoreValue)
+    TextView totalScore;
+    @BindView(R.id.totalKDValue)
+    TextView totalKd;
+    @BindView(R.id.matchesPlayedValue)
+    TextView matchesPlayed;
 
     private Unbinder unbinder;
     HashMap<String,String> userStatsMap;
@@ -50,10 +59,16 @@ public class UserStatistics extends Fragment {
                 totalWins.setText(result.get("Wins"));
                 winPercentage.setText(result.get("Win%"));
                 totalKills.setText(result.get("Kills"));
+                totalScore.setText(result.get("Score"));
+                totalKd.setText(result.get("K/d"));
+                matchesPlayed.setText(result.get("Matches Played"));
             }
         });
 
-
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setInterpolator(new AccelerateInterpolator());
+        fadeIn.setDuration(2200);
+        view.setAnimation(fadeIn);
         return view;
     }
 

@@ -24,6 +24,7 @@ public class MySingleton {
     private static Context mCtx;
     private static String challengesUrl = "https://api.fortnitetracker.com/v1/challenges";
     private static String userStatsUrl = "https://api.fortnitetracker.com/v1/profile";
+    private static String storeUrl = "https://api.fortnitetracker.com/v1/store";
     private List<String> mChallenges;
 
     private MySingleton(Context context) {
