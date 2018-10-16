@@ -11,6 +11,7 @@
     <string name="settings">Settings</string>
     <string name="stats">User Stats</string>
     <string name="challenges">Weekly challenges</string>
+    <string name="seasons">Compare seasons</string>
     <string-array name="platforms_array">
         <item name="pc">pc</item>
         <item name="psn">psn</item>
