@@ -27,6 +27,16 @@ public class MySingleton {
     private static String storeUrl = "https://api.fortnitetracker.com/v1/store";
     private List<String> mChallenges;
 
+    public HashMap<String, String> getStatsTfue() {
+        return statsTfue;
+    }
+
+    public HashMap<String, String> getStatsNinja() {
+        return statsNinja;
+    }
+
+    private HashMap<String,String> statsTfue;
+    private HashMap<String,String> statsNinja;
     private MySingleton(Context context) {
         mCtx = context;
         mRequestQueue = getRequestQueue();
@@ -46,6 +56,8 @@ public class MySingleton {
             // Activity or BroadcastReceiver if someone passes one in.
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
             mChallenges = requestChallenges();
+            statsTfue =  sendUserStatsDiagramRequest("Not tfue", "pc");
+            statsNinja =  sendUserStatsDiagramRequest("Ninja", "pc");
         }
         return mRequestQueue;
     }
@@ -71,6 +83,47 @@ public class MySingleton {
                             userDataMap.put(key,value);
                         }
                         callback.onSuccesResponse(userDataMap);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                },
+                        error -> {
+                            //Failure Callback
+                            System.out.println(error);
+                        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type", "application/json");
+                headers.put("TRN-Api-Key", BuildConfig.ApiKey);
+                return headers;
+            }
+        };
+        mRequestQueue.add(jsonObjReq);
+        return userDataMap;
+    }
+
+    public HashMap<String,String> sendUserStatsDiagramRequest(String username, String platform){
+
+
+
+        String url = userStatsUrl+"/"+platform+"/"+username;
+        HashMap<String,String> userDataMap = new HashMap<>();
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest
+                (Request.Method.GET, url, null, (JSONObject response) -> {
+                    try {
+                        JSONArray array = response.getJSONArray("lifeTimeStats");
+                        System.out.println(array);
+
+                        for(int i=0;i<array.length();i++){
+                            String key = array.getJSONObject(i).getString("key");
+                            System.out.println(key);
+                            String value = array.getJSONObject(i).getString("value");
+                            System.out.println(value);
+                            userDataMap.put(key,value);
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
