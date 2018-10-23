@@ -1,3 +1,10 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
 <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,10 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="K/d comparison"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="K/d comparison" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewSolo"
@@ -30,48 +39,63 @@
         android:text="Kills" />
 
     <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphKills"
         android:layout_width="match_parent"
         android:layout_height="100dip"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolo"
-        android:id="@+id/graphKills" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSolo" />
 
     <TextView
         android:id="@+id/textViewDuo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/graphKills"
+        android:text="Wins"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Wins" />
+        app:layout_constraintTop_toBottomOf="@+id/graphKills" />
 
     <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphWins"
         android:layout_width="match_parent"
         android:layout_height="100dip"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDuo"
-        android:id="@+id/graphWins" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDuo" />
 
     <TextView
         android:id="@+id/textViewSquad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/graphWins"
+        android:text="K/d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="K/d" />
+        app:layout_constraintTop_toBottomOf="@+id/graphWins" />
 
     <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphKd"
         android:layout_width="match_parent"
         android:layout_height="100dip"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSquad"
-        android:id="@+id/graphKd" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSquad" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>
