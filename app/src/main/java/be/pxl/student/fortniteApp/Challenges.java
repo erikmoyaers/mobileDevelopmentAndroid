@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.List;
 
 import be.pxl.student.fortniteApp.R;
+import be.pxl.student.fortniteApp.dataclasses.Challenge;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -43,10 +45,11 @@ public class Challenges extends Fragment {
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<String> challenges = MySingleton.getInstance(this.getActivity().getApplicationContext()).getChallenges();
+        List<Challenge> challenges = MySingleton.getInstance(this.getActivity().getApplicationContext()).getChallenges();
 
         mAdapter = new ChallengesListAdapter(challenges);
         mRecyclerView.setAdapter(mAdapter);
+
 
         return view;
     }

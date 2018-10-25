@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/GREY"
+    android:layout_margin="10sp"
     android:layout_height="50sp">
 
     <TextView
@@ -8,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:fontFamily="serif-monospace"
+        android:fontFamily="serif"
         android:singleLine="false"
         android:text="@string/hello_blank_fragment"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
-        android:layout_margin="10sp"
+        android:textSize="16sp"
+        android:layout_marginStart="15sp"
+        android:layout_gravity="center"
         android:textStyle="bold" />
 
 

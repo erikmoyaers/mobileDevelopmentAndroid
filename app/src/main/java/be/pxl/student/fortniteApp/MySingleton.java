@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import be.pxl.student.fortniteApp.dataclasses.Challenge;
+
 
 public class MySingleton {
     private static MySingleton mInstance;
@@ -25,7 +27,7 @@ public class MySingleton {
     private static String challengesUrl = "https://api.fortnitetracker.com/v1/challenges";
     private static String userStatsUrl = "https://api.fortnitetracker.com/v1/profile";
     private static String storeUrl = "https://api.fortnitetracker.com/v1/store";
-    private List<String> mChallenges;
+    private List<Challenge> mChallenges;
 
     private MySingleton(Context context) {
         mCtx = context;
@@ -92,8 +94,8 @@ public class MySingleton {
         return userDataMap;
     }
 
-    private List<String> requestChallenges(){
-        List<String> challenges = new ArrayList<>();
+    private List<Challenge> requestChallenges(){
+        List<Challenge> challenges = new ArrayList<>();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest
                 (Request.Method.GET, challengesUrl, null, response -> {
@@ -105,8 +107,15 @@ public class MySingleton {
                     }
                     for(int i=0;i<array.length();i++){
                         try {
-                            challenges.add(array.getJSONObject(i).getJSONArray("metadata").getJSONObject(1).getString("value"));
-                            System.out.println(array.getJSONObject(i).getJSONArray("metadata").getJSONObject(1).getString("value"));
+                            HashMap<String,String> challenge = new HashMap<>();
+                            JSONArray challengeArray = array.getJSONObject(i).getJSONArray("metadata");
+                            for(int j = 0; j<challengeArray.length()-1;j++){
+//                                System.out.println(challengeArray.getJSONObject(j));
+                                challenge.put(challengeArray.getJSONObject(j).getString("key"),challengeArray.getJSONObject(j).getString("value"));
+                            }
+                            Challenge challengeObject = new Challenge(challenge);
+                            challenges.add(challengeObject);
+//                            System.out.println(array.getJSONObject(i).getJSONArray("metadata").getJSONObject(1).getString("value"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -133,7 +142,7 @@ public class MySingleton {
         getRequestQueue().add(req);
     }
 
-    public List<String> getChallenges(){
+    public List<Challenge> getChallenges(){
         return mChallenges;
     }
 
