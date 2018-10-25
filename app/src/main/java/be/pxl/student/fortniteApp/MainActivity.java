@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.add(R.id.mainActivity, settingsFragment);
                         fragmentTransaction.commit();
                     }
+                    else if(getResources().getString(R.string.comparison).equals(menuTitle)){
+                        SeasonDiagram seasonDiagramFragment = new SeasonDiagram();
+                        fragmentTransaction.add(R.id.mainActivity, seasonDiagramFragment);
+                        fragmentTransaction.commit();
+                    }
                     return true;
                 });
 
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             TextView headerUsername = navigationView.getHeaderView(0).findViewById(R.id.navText);
             headerUsername.setText(username);
             UserStatistics statsFragment = new UserStatistics();
-            navigationView.getMenu().getItem(0).setChecked(true);
+            navigationView.getMenu().getItem(1).setChecked(true);
             fragmentTransaction.add(R.id.mainActivity, statsFragment);
             fragmentTransaction.commit();
 
