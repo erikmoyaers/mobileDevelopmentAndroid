@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
@@ -106,9 +107,26 @@ public class SeasonDiagram extends Fragment {
                 seriesKd.setValuesOnTopColor(Color.RED);
 
 
+
+
                 graphKills.addSeries(seriesKills);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphKills);
+                staticLabelsFormatter.setHorizontalLabels(new String[] {"tfue", "Ninja", "You"});
+                graphKills.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+
+
                 graphWins.addSeries(seriesWins);
+                graphWins.getGridLabelRenderer().setNumHorizontalLabels(3);
+                graphWins.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+
+
+
                 graphKd.addSeries(seriesKd);
+                graphKd.getGridLabelRenderer().setNumHorizontalLabels(3);
+                graphKd.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
             }
         });
 

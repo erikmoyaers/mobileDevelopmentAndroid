@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.add(R.id.mainActivity, settingsFragment);
                         fragmentTransaction.commit();
                     }
-                    else if(getResources().getString(R.string.seasons).equals(menuTitle)){
+                    else if(getResources().getString(R.string.comparison).equals(menuTitle)){
                         SeasonDiagram seasonDiagramFragment = new SeasonDiagram();
                         fragmentTransaction.add(R.id.mainActivity, seasonDiagramFragment);
                         fragmentTransaction.commit();
