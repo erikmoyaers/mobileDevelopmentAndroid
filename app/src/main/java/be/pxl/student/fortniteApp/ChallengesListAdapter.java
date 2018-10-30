@@ -2,6 +2,7 @@ package be.pxl.student.fortniteApp;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import be.pxl.student.fortniteApp.dataclasses.Challenge;
 
+import static android.support.v4.content.ContextCompat.startActivity;
 import static be.pxl.student.fortniteApp.R.*;
 
 public class ChallengesListAdapter extends RecyclerView.Adapter<ChallengesListAdapter.MyViewHolder> {
@@ -50,6 +52,10 @@ public class ChallengesListAdapter extends RecyclerView.Adapter<ChallengesListAd
                     } else {
                         // In portrait
                        itemDetail.setVisibility(View.INVISIBLE);
+                       Class destinationActivity = DetailActivity.class;
+                       Intent startChildActivityIntent = new Intent(itemDetail.getContext(),destinationActivity);
+                       startChildActivityIntent.putExtra(Intent.EXTRA_TEXT,mDataset[getAdapterPosition()].getQuestReward());
+                       startActivity(itemDetail.getContext(),startChildActivityIntent,null);
                     }
 
 
