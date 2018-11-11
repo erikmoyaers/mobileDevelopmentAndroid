@@ -166,12 +166,10 @@ public class MySingleton {
                             HashMap<String,String> challenge = new HashMap<>();
                             JSONArray challengeArray = array.getJSONObject(i).getJSONArray("metadata");
                             for(int j = 0; j<challengeArray.length()-1;j++){
-//                                System.out.println(challengeArray.getJSONObject(j));
                                 challenge.put(challengeArray.getJSONObject(j).getString("key"),challengeArray.getJSONObject(j).getString("value"));
                             }
                             Challenge challengeObject = new Challenge(challenge);
                             challenges.add(challengeObject);
-//                            System.out.println(array.getJSONObject(i).getJSONArray("metadata").getJSONObject(1).getString("value"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

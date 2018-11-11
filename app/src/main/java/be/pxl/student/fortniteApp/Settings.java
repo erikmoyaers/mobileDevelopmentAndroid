@@ -59,7 +59,6 @@ public class Settings extends Fragment {
 
 
         return view;
-
     }
 
     @Override
@@ -69,7 +68,6 @@ public class Settings extends Fragment {
     }
 
     private void savePlatformSettings(Spinner spinner){
-        String platform = spinner.getSelectedItem().toString();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -100,8 +98,6 @@ public class Settings extends Fragment {
                 editor.putString(getString(R.string.username),username);
                 editor.apply();
                 //Set username as header title in nav
-//                NavigationView navigationView = getActivity().findViewById(R.id.navText);
-//                View hView =  navigationView.inflateHeaderView(R.layout.nav_header);
                 TextView headerUsername = getActivity().findViewById(R.id.navText);
                 headerUsername.setText(username);
 

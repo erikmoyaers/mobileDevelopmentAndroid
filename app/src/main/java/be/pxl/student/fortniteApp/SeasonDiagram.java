@@ -36,13 +36,8 @@ public class SeasonDiagram extends Fragment {
     @BindView(R.id.graphKd)
     GraphView graphKd;
 
-
-
+    
     private HashMap<String, String> userStatsMap;
-
-
-    private Unbinder unbinder;
-    private int wins;
     private HashMap<String,String> tfueStats;
     private HashMap<String,String> ninjaStats;
 
@@ -56,7 +51,7 @@ public class SeasonDiagram extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_season_diagram, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         tfueStats = MySingleton.getInstance(this.getContext()).getStatsTfue();
         ninjaStats = MySingleton.getInstance(this.getContext()).getStatsNinja();
 
@@ -107,35 +102,21 @@ public class SeasonDiagram extends Fragment {
                 seriesKd.setValuesOnTopColor(Color.RED);
 
 
-
-
                 graphKills.addSeries(seriesKills);
 
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphKills);
                 staticLabelsFormatter.setHorizontalLabels(new String[] {"tfue", "Ninja", "You"});
                 graphKills.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-
-
                 graphWins.addSeries(seriesWins);
                 graphWins.getGridLabelRenderer().setNumHorizontalLabels(3);
                 graphWins.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-
-
 
                 graphKd.addSeries(seriesKd);
                 graphKd.getGridLabelRenderer().setNumHorizontalLabels(3);
                 graphKd.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
             }
         });
-
-
-
-
-
-
-
         return view;
     }
 

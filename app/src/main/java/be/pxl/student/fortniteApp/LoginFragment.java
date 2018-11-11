@@ -48,12 +48,9 @@ public class LoginFragment extends Fragment{
     private Unbinder unbinder;
     private NavigationView navigationView;
 
-
-
     public LoginFragment() {
 
     }
-
 
     public static LoginFragment newInstance(NavigationView navigationView){
         LoginFragment fragment = new LoginFragment();
@@ -96,7 +93,7 @@ public class LoginFragment extends Fragment{
 
 
     private void savePlatform(Spinner spinner){
-        //String platform = spinner.getSelectedItem().toString();
+
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.platform),spinner.getSelectedItem().toString());
@@ -125,20 +122,6 @@ private void saveUsername(EditText usernameInput){
     for(int i = 0; i< menuNav.size();i++){
         menuNav.getItem(i).setEnabled(true);
     }
-
-
-//    usernameInput.setOnKeyListener((v, keyCode, event) -> {
-//        // If the event is a key-down event on the "enter" button
-//        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//                (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//            // Perform action on key press
-//
-//            return true;
-//        }
-//        return false;
-//    });
-
-
 }
 
     public NavigationView getNavigationView() {

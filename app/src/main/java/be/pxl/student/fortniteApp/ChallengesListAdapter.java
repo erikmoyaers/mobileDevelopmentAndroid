@@ -57,37 +57,6 @@ public class ChallengesListAdapter extends RecyclerView.Adapter<ChallengesListAd
                        startChildActivityIntent.putExtra(Intent.EXTRA_TEXT,mDataset[getAdapterPosition()].getQuestReward());
                        startActivity(itemDetail.getContext(),startChildActivityIntent,null);
                     }
-
-
-//
-//                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                    ChallengeDetail challengeDetail = (ChallengeDetail)  activity.getSupportFragmentManager().findFragmentById(id.challengeDetail);
-//
-//                    ChallengeDetail newchallengeDetail = new ChallengeDetail();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("item", mDataset[getAdapterPosition()].getQuestReward());
-//                    newchallengeDetail.setArguments(bundle);
-//                    activity.getSupportFragmentManager().beginTransaction().add(id.rv_challenges,challengeDetail);
-
-//                    if(challengeDetail!=null && challengeDetail.isVisible()){
-//                        ChallengeDetail newchallengeDetail = new ChallengeDetail();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("item",mDataset[getAdapterPosition()].getQuestReward());
-//                        newchallengeDetail.setArguments(bundle);
-//
-//                        android.support.v4.app.FragmentTransaction transaction =  activity.getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(newchallengeDetail.getId(),newchallengeDetail);
-//                        transaction.addToBackStack(null);
-//                        transaction.commit();
-//                    }else{
-//                        Intent intent = new Intent(activity.getBaseContext(), ChallengeDetail.class);
-//                        intent.putExtra("item", mDataset[getAdapterPosition()].getQuestReward());
-//                        activity.startActivity(intent);
-//                    }
-
-//                    FragmentTransaction transaction =
-
-                    System.out.println(mDataset[getAdapterPosition()].getQuestReward());
                 }
             });
         }
@@ -101,8 +70,7 @@ public class ChallengesListAdapter extends RecyclerView.Adapter<ChallengesListAd
     public ChallengesListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(layout.challenges_list_item, parent, false);
 
-        MyViewHolder vh = new MyViewHolder(view);
-        return vh;
+        return new MyViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
